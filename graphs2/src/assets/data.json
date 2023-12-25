@@ -1,0 +1,72 @@
+{
+    "datapoint1": {
+        "name": "dp01",
+        "countInput": 2,
+        "countOutput": 3,
+        "output": [
+            {
+            "dp": "dp02",
+            "positionOutput": 1,
+            "positionInput": 1
+            },{
+            "dp": "dp05",
+            "positionOutput": 2,
+            "positionInput": 1
+            },{
+            "dp": "dp04",
+            "positionOutput": 3,
+            "positionInput": 1
+            }
+        ]
+    },
+    "datapoint2": {
+        "name": "dp02",
+        "countInput": 2,
+        "countOutput": 2,
+        "output": [
+            {
+            "dp": "dp03",
+            "positionOutput": 1,
+            "positionInput": 1
+            },{
+            "dp": "dp06",
+            "positionOutput": 1,
+            "positionInput": 1
+            }
+        ]
+    },
+    "datapoint3": {
+        "name": "dp03",
+        "countInput": 3,
+        "countOutput": 1,
+        "output": []
+    },
+    "datapoint4": {
+        "name": "dp04",
+        "countInput": 3,
+        "countOutput": 2,
+        "output": [
+            {
+            "dp": "dp02",
+            "positionOutput": 1,
+            "positionInput": 2
+            },{
+            "dp": "dp03",
+            "positionOutput": 1,
+            "positionInput": 3
+            }
+        ]
+    },
+    "datapoint5": {
+        "name": "dp05",
+        "countInput": 2,
+        "countOutput": 3,
+        "output": []
+    },
+    "datapoint6": {
+        "name": "dp06",
+        "countInput": 1,
+        "countOutput": 2,
+        "output": []
+    }
+}
