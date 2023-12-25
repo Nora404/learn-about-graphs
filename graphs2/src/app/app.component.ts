@@ -14,6 +14,7 @@ import { Observable, map } from 'rxjs';
 export class AppComponent {
   title = 'graphs2';
   data$: Observable<Datapoint[]> = inject(DataService).data;
+  datapointSize = 150;
 
   biggerNumber(n1: number, n2: number):number{
     return n1 > n2 ? n1 : n2; 

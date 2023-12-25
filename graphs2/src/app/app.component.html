@@ -2,32 +2,31 @@
 
 
 <div *ngFor="let data of (data$ | async)">
-  Name: {{data.name}}<br>
-  Vorhandene Eingänge:{{data.countInput}}<br>
-  Vorhandene Ausgänge:{{data.countOutput}}<br>
-
   <svg 
   xmlns="http://www.w3.org/2000/svg" 
   xmlns:xlink="http://www.w3.org/1999/xlink" 
-  width="100" 
+  [attr.width]="datapointSize" 
   [attr.height]="biggerNumber(data.countInput, data.countOutput)*25"
   >
-    <rect x="20" y="0" width="60" height="100%" fill="silver"/>
+    <rect x="20" y="10" width="60%" height="100%" fill="silver"/>
+    <text x="35" y="35"> {{data.name}} </text>
 
     <ng-container *ngFor="let input of createArray(data.countInput)">
-      <rect x="15" 
-            [attr.y]="input*15" 
+      <rect [attr.x]="15" 
+            [attr.y]="input*18" 
             width="10" 
             height="10" 
-            fill="blue"/>
+            fill="blue"
+            class="io"/>
     </ng-container>
 
     <ng-container *ngFor="let input of createArray(data.countOutput)">
-      <rect x="75" 
-            [attr.y]="input*15" 
+      <rect [attr.x]="15 + (datapointSize * 0.6)" 
+            [attr.y]="input*18" 
             width="10" 
             height="10" 
-            fill="red"/>
+            fill="red"
+            class="io"/>
     </ng-container>
 
   </svg><br>
