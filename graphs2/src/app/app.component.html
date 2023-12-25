@@ -1,5 +1,3 @@
-{{data$ | async | json}}
-
 <hr>
 
 
@@ -7,6 +5,32 @@
   Name: {{data.name}}<br>
   Vorhandene Eingänge:{{data.countInput}}<br>
   Vorhandene Ausgänge:{{data.countOutput}}<br>
+
+  <svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  width="100" 
+  [attr.height]="biggerNumber(data.countInput, data.countOutput)*25"
+  >
+    <rect x="20" y="0" width="60" height="100%" fill="silver"/>
+
+    <ng-container *ngFor="let input of createArray(data.countInput)">
+      <rect x="15" 
+            [attr.y]="input*15" 
+            width="10" 
+            height="10" 
+            fill="blue"/>
+    </ng-container>
+
+    <ng-container *ngFor="let input of createArray(data.countOutput)">
+      <rect x="75" 
+            [attr.y]="input*15" 
+            width="10" 
+            height="10" 
+            fill="red"/>
+    </ng-container>
+
+  </svg><br>
 
   Hat Verbindungen zu:
     <div *ngIf="data.output.length > 0">
