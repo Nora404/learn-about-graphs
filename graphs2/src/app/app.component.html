@@ -9,20 +9,22 @@
   [attr.height]="biggerNumber(data.countInput, data.countOutput)*25"
   >
     <rect x="20" y="10" width="60%" height="100%" fill="silver"/>
-    <text x="35" y="35"> {{data.name}} </text>
+    <text x="35" y="28"> {{data.name}} </text>
 
     <ng-container *ngFor="let input of createArray(data.countInput)">
       <rect [attr.x]="15" 
             [attr.y]="input*18" 
+            [attr.id]="data.name + 'input' + input"
             width="10" 
             height="10" 
             fill="blue"
             class="io"/>
     </ng-container>
 
-    <ng-container *ngFor="let input of createArray(data.countOutput)">
+    <ng-container *ngFor="let output of createArray(data.countOutput)">
       <rect [attr.x]="15 + (datapointSize * 0.6)" 
-            [attr.y]="input*18" 
+            [attr.y]="output*18" 
+            [attr.id]="data.name + 'output' + output"
             width="10" 
             height="10" 
             fill="red"
