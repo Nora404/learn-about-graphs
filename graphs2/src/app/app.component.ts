@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { DataService, Datapoint } from './data.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +13,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'graphs2';
+  data$: Observable<Datapoint[]> = inject(DataService).data;
+  
 }

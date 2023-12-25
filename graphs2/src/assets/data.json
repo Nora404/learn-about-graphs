@@ -1,5 +1,5 @@
-{
-    "datapoint1": {
+[
+    {
         "name": "dp01",
         "countInput": 2,
         "countOutput": 3,
@@ -19,7 +19,7 @@
             }
         ]
     },
-    "datapoint2": {
+    {
         "name": "dp02",
         "countInput": 2,
         "countOutput": 2,
@@ -35,13 +35,13 @@
             }
         ]
     },
-    "datapoint3": {
+    {
         "name": "dp03",
         "countInput": 3,
         "countOutput": 1,
         "output": []
     },
-    "datapoint4": {
+    {
         "name": "dp04",
         "countInput": 3,
         "countOutput": 2,
@@ -57,16 +57,16 @@
             }
         ]
     },
-    "datapoint5": {
+    {
         "name": "dp05",
         "countInput": 2,
         "countOutput": 3,
         "output": []
     },
-    "datapoint6": {
+    {
         "name": "dp06",
         "countInput": 1,
         "countOutput": 2,
         "output": []
     }
-}
+]
