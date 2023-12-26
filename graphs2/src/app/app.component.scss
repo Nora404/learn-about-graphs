@@ -1,3 +1,17 @@
+.io {
+    z-index: 100;
+}
 .io:hover {
     filter: brightness(50%);
 }
+
+.line:hover {
+    stroke: greenyellow;
+}
+
+.datapoint{
+    display: inline-block;
+    padding: 20px;
+}
+
+

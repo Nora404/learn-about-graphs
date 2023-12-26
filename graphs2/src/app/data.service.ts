@@ -21,5 +21,13 @@ export type Output = {
 export class DataService {
 
   http: HttpClient = inject(HttpClient);
-  data: Observable<Datapoint[]> = this.http.get<Datapoint[]>('../assets/data.json');
+  data: Observable<Datapoint[]> = 
+    this.http.get<Datapoint[]>('../assets/data.json').pipe(
+      map(data =>data.sort((a: Datapoint, b: Datapoint)=>{
+        const maxA = Math.max(a.countInput, a.countOutput);
+        const maxB = Math.max(b.countInput, b.countOutput);
+
+        return maxB - maxA;
+      }))
+    );
 }

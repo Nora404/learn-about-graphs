@@ -1,50 +1,72 @@
-<hr>
+  <div class="datapoint" *ngFor="let data of (data$ | async)">
+    <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="100%" 
+    height="100%"
+    style="position: absolute; top: 0; left: 0;">
+      <defs>
+      <linearGradient id="lgrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="hsl(250,100%,50%)" />
+          <stop offset="1" stop-color="hsl(0,100%,50%)" />
+      </linearGradient>
+      </defs>
+
+      <line x1="138" y1="51" x2="238" y2="231" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+      <line x1="138" y1="69" x2="48" y2="206" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+      <line x1="138" y1="87" x2="428" y2="51" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+      <line x1="518" y1="51" x2="238" y2="249" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+      <line x1="518" y1="51" x2="238" y2="87" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+      <line x1="328" y1="231" x2="238" y2="46" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+      <line x1="328" y1="231" x2="428" y2="231" stroke="url(#lgrad)" stroke-width="3" class="line"/>
+    </svg>
+    
+    <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    [attr.width]="datapointSize" 
+    [attr.height]="biggerNumber(data.countInput, data.countOutput)*25"
+    [attr.id]="data.name"
+    >
+      <rect x="20" y="10" width="60%" height="100%" fill="silver"/>
+      <text x="35" y="28"> {{data.name}} </text>
+  
+      <ng-container *ngFor="let input of createArray(data.countInput)">
+        <rect [attr.x]="15" 
+              [attr.y]="input*18" 
+              [attr.id]="data.name + 'input' + input"
+              width="10" 
+              height="10" 
+              fill="blue"
+              class="io"
+              (click)="showMyPoint($event, data.name, 'input' + input)"/>
+      </ng-container>
+  
+      <ng-container *ngFor="let output of createArray(data.countOutput)">
+        <rect [attr.x]="15 + (datapointSize * 0.6)" 
+              [attr.y]="output*18" 
+              [attr.id]="data.name + 'output' + output"
+              width="10" 
+              height="10" 
+              fill="red"
+              class="io"
+              (click)="showMyPoint($event, data.name, 'output' + output)"/>
+      </ng-container>
+  
+    </svg><br>
+  
+    Hat Verbindungen zu:
+      <div *ngIf="data.output.length > 0">
+        <span *ngFor="let con of data.output" #connection>
+          {{con.dp}}
+        </span>
+      </div>
+     
+      <div *ngIf="data.output.length == 0">
+        <span>
+          keine
+        </span>
+      </div>
+  </div>
 
 
-<div *ngFor="let data of (data$ | async)">
-  <svg 
-  xmlns="http://www.w3.org/2000/svg" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
-  [attr.width]="datapointSize" 
-  [attr.height]="biggerNumber(data.countInput, data.countOutput)*25"
-  >
-    <rect x="20" y="10" width="60%" height="100%" fill="silver"/>
-    <text x="35" y="28"> {{data.name}} </text>
-
-    <ng-container *ngFor="let input of createArray(data.countInput)">
-      <rect [attr.x]="15" 
-            [attr.y]="input*18" 
-            [attr.id]="data.name + 'input' + input"
-            width="10" 
-            height="10" 
-            fill="blue"
-            class="io"/>
-    </ng-container>
-
-    <ng-container *ngFor="let output of createArray(data.countOutput)">
-      <rect [attr.x]="15 + (datapointSize * 0.6)" 
-            [attr.y]="output*18" 
-            [attr.id]="data.name + 'output' + output"
-            width="10" 
-            height="10" 
-            fill="red"
-            class="io"/>
-    </ng-container>
-
-  </svg><br>
-
-  Hat Verbindungen zu:
-    <div *ngIf="data.output.length > 0">
-      <span *ngFor="let con of data.output" #connection>
-        {{con.dp}}
-      </span>
-    </div>
-   
-    <div *ngIf="data.output.length == 0">
-      <span>
-        keine
-      </span>
-    </div>
-
-  <hr>
-</div>
