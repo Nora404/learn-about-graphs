@@ -5,6 +5,7 @@ import { DataService, Datapoint } from './data.service';
 import { Observable} from 'rxjs';
 
 export type Line = {
+  id: string,
   x1: number,
   y1: number,
   x2: number,
@@ -40,6 +41,7 @@ export class AppComponent implements AfterViewInit{
               const posTaget = elemTaget ? elemTaget.getBoundingClientRect(): {left:0,top:0};
 
               this.lines.push({
+                id: datapoint.name + 'output' +  line.positionOutput + line.dp + 'input' +  line.positionInput,
                 x1: Math.floor(posStart.left +5),
                 y1: Math.floor(posStart.top +5),
                 x2: Math.floor(posTaget.left +5),
@@ -56,7 +58,17 @@ export class AppComponent implements AfterViewInit{
       })
   }
 
+  getMaxWidth(line:Line) {
+    return Math.max(line.x1, line.x2);
+  }
 
+  getMaxHeight(line:Line) {
+    return Math.max(line.y1, line.y2);
+  }
+
+  convertToPercentage(value: number, max: number):number {
+    return (value / max) * 100;
+  }
 
   biggerNumber(n1: number, n2: number): number {
     return n1 > n2 ? n1 : n2;
