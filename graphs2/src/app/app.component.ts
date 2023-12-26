@@ -1,8 +1,15 @@
-import { AfterViewInit, Component, OnDestroy, inject } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DataService, Datapoint } from './data.service';
-import { Observable, map, tap } from 'rxjs';
+import { Observable} from 'rxjs';
+
+export type Line = {
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+}
 
 @Component({
   selector: 'app-root',
@@ -15,6 +22,11 @@ export class AppComponent implements AfterViewInit{
   title = 'graphs2';
   data$: Observable<Datapoint[]> = inject(DataService).data;
   datapointSize = 150;
+  lines: Line[] = []
+
+  test(){
+    console.log(this.lines);
+  }
 
   ngAfterViewInit(): void {
       this.data$.subscribe(data =>{
@@ -27,17 +39,24 @@ export class AppComponent implements AfterViewInit{
               const posStart = elemStart ? elemStart.getBoundingClientRect(): {left:0,top:0};
               const posTaget = elemTaget ? elemTaget.getBoundingClientRect(): {left:0,top:0};
 
-              // console.log(posStart);
+              this.lines.push({
+                x1: Math.floor(posStart.left +5),
+                y1: Math.floor(posStart.top +5),
+                x2: Math.floor(posTaget.left +5),
+                y2: Math.floor(posTaget.top +5),
+              });
 
-              console.log(
-                'Von:' + datapoint.name + ' Position: ' + line.positionOutput, Math.floor(posStart.left +5), Math.floor(posStart.top +5),
-                'Nach:' + line.dp + ' Position: ' + line.positionInput, Math.floor(posTaget.left +5), Math.floor(posTaget.top +5)
-                );
+              // console.log(
+              //   'Von:' + datapoint.name + ' Position: ' + line.positionOutput, Math.floor(posStart.left +5), Math.floor(posStart.top +5),
+              //   'Nach:' + line.dp + ' Position: ' + line.positionInput, Math.floor(posTaget.left +5), Math.floor(posTaget.top +5)
+              //   );
             })
           }
         });
       })
   }
+
+
 
   biggerNumber(n1: number, n2: number): number {
     return n1 > n2 ? n1 : n2;
