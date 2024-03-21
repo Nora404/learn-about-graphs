@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.custom-tooltip {
+    position: fixed; /* oder `absolute`, abhängig von deinem Layout */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    display: none; /* Anfangs versteckt */
+    z-index: 1000; /* Stelle sicher, dass der Tooltip über anderen Elementen liegt */
+    pointer-events: none; /* Ermöglicht Interaktionen mit darunterliegenden Elementen */
+  }

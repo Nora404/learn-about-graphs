@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DataService, Datapoint } from './data.service';
 import { Observable} from 'rxjs';
+import { HoverEffectDirective } from './hover-effect.directive';
 
 export type Line = {
   id: string,
@@ -15,7 +16,7 @@ export type Line = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, HoverEffectDirective],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
